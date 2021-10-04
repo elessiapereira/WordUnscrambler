@@ -63,6 +63,22 @@ namespace WordUnscrambler
 
             //call a word matcher method to get a list of structs of matched words.
             List<MatchedWord> matchedWords = _wordMatcher.Match(scrambledWords, wordList);
+
+            // Change 3
+            if (matchedWords.Any())
+            {
+                foreach (var matchedWord in matchedWords)
+                {
+                    string matchFound = "A match has been found for {0}: {1}";
+
+                    Console.WriteLine(matchFound, matchedWord.ScrambledWord, matchedWord.Word);
+                }
+            }
+            else
+            {
+                string matchNotFound = "No match found";
+                Console.WriteLine(matchNotFound);
+            }
         }
     }
 }
