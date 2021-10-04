@@ -20,10 +20,23 @@ namespace WordUnscrambler
                     if (scrambledWord.Equals(word, StringComparison.OrdinalIgnoreCase)) {
                         matchedWords.Add(BuildMatchedWord(scrambledWord, word));
                     }
-                    else
+                    else //Change one being completed
                     {
+                        var scrambledWordArray = scrambledWord.ToCharArray();
+                            Array.Sort(scrambledWordArray);
+                                var sortScrambledWord = new string(scrambledWordArray);
+
+                        var wordArray = word.ToCharArray();
+                            Array.Sort(wordArray);
+                                var sortWord = new string(wordArray);
+
+                        if (sortScrambledWord.Equals(sortWord, StringComparison.OrdinalIgnoreCase))
+                        {
+                            matchedWords.Add(BuildMatchedWord(scrambledWord, word));
+                        }
                     }
                 }
+                return matchedWords;
             }
 
             MatchedWord BuildMatchedWord(string scrambledWord, string word)
